@@ -48,7 +48,7 @@ const GROWTH_ICONS: Record<GrowthLevel, React.ComponentType<any>> = {
 const TYPE_CONFIG: Pick<Record<PracticeType, { label: string; color: string; icon: string }>, PracticeType> = {
     "prep-training": { label: "PREP 트레이닝", color: "#3B82F6", icon: "📝" }, // blue-500
     "prep-transform": { label: "PREP 변환", color: "#F59E0B", icon: "🔄" }, // amber-500
-    "prep-interview": { label: "5D 모의면접", color: "#9333EA", icon: "🎤" }, // purple-600
+    "prep-interview": { label: "5D 논리검증", color: "#9333EA", icon: "🎯" }, // purple-600
     elenchus: { label: "5D 산파술", color: "#F59E0B", icon: "🏛️" }, // amber-500
     "prep-word-dancing": { label: "PREP 워드댄싱", color: "#10B981", icon: "🎵" }, // green/emerald-500
 };
@@ -126,7 +126,7 @@ export default function MyProgressPage() {
                             transition={{ delay: 0.1 }}
                             className="text-xl text-slate-500 max-w-lg mx-auto"
                         >
-                            PREP 트레이닝이나 AI 면접을 시작하면
+                            PREP 트레이닝이나 논리 검증을 시작하면
                             <br />
                             여기에 성장 기록이 쌓입니다.
                         </motion.p>
@@ -134,26 +134,19 @@ export default function MyProgressPage() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="flex gap-4 justify-center flex-wrap"
+                            className="flex gap-6 justify-center flex-wrap pt-4"
                         >
-                            <Link href="/prep-training">
-                                <Button
-                                    size="lg"
-                                    className="h-14 px-8 text-lg bg-success-green hover:bg-success-green/90 text-white rounded-full font-bold shadow-lg"
-                                >
-                                    PREP 트레이닝 시작
-                                    <ArrowRight className="ml-2 h-5 w-5" />
-                                </Button>
+                            <Link href="/prep-word-dancing" className="flex items-center gap-2 text-emerald-600 font-bold text-lg hover:text-emerald-700 hover:underline transition-all">
+                                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                PREP워드댄싱
                             </Link>
-                            <Link href="/5d-interview">
-                                <Button
-                                    size="lg"
-                                    variant="outline"
-                                    className="h-14 px-8 text-lg border-2 border-trust-navy text-trust-navy rounded-full font-bold"
-                                >
-                                    AI 면접 시작
-                                    <ArrowRight className="ml-2 h-5 w-5" />
-                                </Button>
+                            <Link href="/prep-training" className="flex items-center gap-2 text-emerald-600 font-bold text-lg hover:text-emerald-700 hover:underline transition-all">
+                                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                PREP트레이닝
+                            </Link>
+                            <Link href="/prep-transform" className="flex items-center gap-2 text-emerald-600 font-bold text-lg hover:text-emerald-700 hover:underline transition-all">
+                                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                PREP변환기
                             </Link>
                         </motion.div>
                     </div>
@@ -171,11 +164,11 @@ export default function MyProgressPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-12"
                 >
-                    <h1 className="text-4xl sm:text-5xl font-black text-trust-navy tracking-tight flex items-center justify-center gap-4">
-                        <div className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
+                    <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight flex items-center justify-center gap-4">
+                        <div className="bg-slate-900 rounded-full p-3 flex items-center justify-center shadow-lg">
                             <BarChart3 className="w-10 h-10 text-white" />
                         </div>
-                        <span><span className="text-emerald-600">PREP</span> 레벨체크</span>
+                        <span>PREP 레벨체크</span>
                     </h1>
                     <p className="text-lg font-bold text-slate-500 mt-4 bg-white px-6 py-2 rounded-full inline-block shadow-sm border border-slate-100">
                         당신의 논리 레벨을 확인해보세요! 🌱
@@ -188,28 +181,28 @@ export default function MyProgressPage() {
                         icon={<BookOpen className="h-6 w-6" />}
                         label="총 연습 횟수"
                         value={`${totalCount}회`}
-                        color="bg-blue-50 text-blue-700"
+                        color="bg-gray-200 text-gray-700"
                         delay={0}
                     />
                     <SummaryCard
                         icon={<Calendar className="h-6 w-6" />}
                         label="이번 주"
                         value={`${weekCount}회`}
-                        color="bg-green-50 text-green-700"
+                        color="bg-gray-200 text-gray-700"
                         delay={0.1}
                     />
                     <SummaryCard
                         icon={<Flame className="h-6 w-6" />}
                         label="연속 출석"
                         value={`${store.streakDays}일`}
-                        color="bg-orange-50 text-orange-700"
+                        color="bg-gray-200 text-gray-700"
                         delay={0.2}
                     />
                     <SummaryCard
                         icon={<Trophy className="h-6 w-6" />}
                         label="현재 레벨"
                         value={`${LEVEL_EMOJI[levelInfo.current]} ${levelInfo.current}`}
-                        color="bg-purple-50 text-purple-700"
+                        color="bg-green-100 text-gray-700"
                         delay={0.3}
                     />
                 </div>

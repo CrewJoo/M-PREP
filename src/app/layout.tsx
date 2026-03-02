@@ -7,12 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://think-prep.vercel.app'), // TODO: Update with actual domain
-  title: {
-    default: "PREP오디세이 | AI 시대의 차별화 전략",
-    template: "%s | PREP오디세이"
-  },
-  description: "AI 시대의 한 수 위, 차별화 전략. PREP 5D-Say를 통해 논리적 사고와 설득력을 키우세요.",
-  keywords: ["PREP", "5D-Say", "인터뷰", "면접 준비", "논리적 말하기", "AI 코칭"],
+  title: "M-PREP",
+  description: "비즈니스를 움직이는 생각의 공식, M-PREP",
+  keywords: ["M-PREP", "PREP", "사고 모델", "논리적 말하기", "AI 프롬프트", "문제 해결"],
   openGraph: {
     title: "PREP오디세이 | AI 시대의 차별화 전략",
     description: "AI 시대의 한 수 위, 차별화 전략. PREP 5D-Say를 통해 논리적 사고와 설득력을 키우세요.",

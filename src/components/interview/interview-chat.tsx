@@ -18,8 +18,8 @@ export function InterviewChat() {
         if (storedMessages && storedMessages.length > 0) return storedMessages;
 
         const initialGreeting = mode === 'SCHOOL'
-            ? "안녕하세요! 입학사정관입니다. 학생부만으로는 알 수 없는 지원자님의 진짜 학업 이야기를 듣고 싶어서 모셨습니다. 긴장하지 마시고 편하게 대화해요. 우선, 희망하는 전공이나 진로 목표가 무엇인가요?"
-            : "반갑습니다. 오늘 면접을 진행하게 된 대입 입학사정관입니다. 생기부에 적힌 활동 내역보다는, 지원자님이 어떤 학업적 열정을 가진 학생인지 깊이 알고 싶습니다. 먼저, 우리 학과에 지원하게 된 솔직한 계기가 궁금합니다.";
+            ? "안녕하세요! 오늘 기획의 논리성을 점검할 AI 코치입니다. 제안서만으로는 알 수 없는 기획자님의 진짜 의도를 듣고 싶습니다. 긴장하지 마시고 편하게 말씀해주세요. 우선, 이 프로젝트의 궁극적인 목표가 무엇인가요?"
+            : "반갑습니다. 논리 검증을 담당하는 AI 코치입니다. 표면적인 문서 내용보다는 작성자님이 어떤 논리적 구조를 가지고 문제에 접근했는지 깊이 알고 싶습니다. 먼저, 이 안건을 제안하게 된 근본적인 계기가 궁금합니다.";
 
         const greetingMsg = { id: 'init-1', role: 'assistant' as const, content: initialGreeting };
         saveToStore(greetingMsg); // Save to store immediately
@@ -135,7 +135,7 @@ export function InterviewChat() {
                     <Textarea
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        placeholder={isLoading ? "사정관이 말하고 있습니다..." : "답변을 입력하세요..."}
+                        placeholder={isLoading ? "AI 코치가 타이핑 중입니다..." : "답변을 입력하세요..."}
                         className="min-h-[60px] max-h-[150px] resize-none pr-12 text-lg py-3 rounded-xl border-gray-300 focus:ring-trust-navy/20 focus:border-trust-navy"
                         disabled={isLoading || isFinished}
                         onKeyDown={(e) => {

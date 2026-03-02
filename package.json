@@ -1,5 +1,5 @@
 {
-  "name": "think-prep",
+  "name": "m-prep",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,6 +14,7 @@
     "@ai-sdk/openai": "^3.0.26",
     "@ai-sdk/react": "^3.0.51",
     "@hookform/resolvers": "^3.9.0",
+    "@lottiefiles/dotlottie-react": "^0.18.3",
     "@radix-ui/react-progress": "^1.1.8",
     "@radix-ui/react-slot": "^1.1.0",
     "@supabase/supabase-js": "^2.95.3",
@@ -27,12 +28,14 @@
     "mammoth": "^1.11.0",
     "next": "14.2.4",
     "pdf-parse": "^2.4.5",
+    "pdf-parse-new": "^2.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.0",
     "recharts": "^3.7.0",
     "resend": "^6.9.2",
     "tailwind-merge": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zod": "^3.23.8",
     "zustand": "^4.5.7"
   },

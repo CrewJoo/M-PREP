@@ -78,7 +78,7 @@ export function CoachingModal({ isOpen, onClose }: CoachingModalProps) {
                         </div>
                         <p className="mb-6 text-gray-600 text-lg px-1">
                             PREP 5D-Say 프레임워크로 당신만의 합격 서사를 완성해 드립니다.<br />
-                            <span className="text-sm text-gray-500 block mt-2">지원 동기부터 면접 답변까지, 입학사정관을 설득하는 '생각의 근육'을 훈련하세요.</span>
+                            <span className="text-sm text-gray-500 block mt-2">아이데이션부터 전략 기획까지, 비즈니스를 움직이는 '생각의 근육'을 훈련하세요.</span>
                         </p>
                         <form onSubmit={handleWaitlistSubmit} className="space-y-5 px-1">
                             <div className="grid grid-cols-2 gap-3">
@@ -130,13 +130,13 @@ export function CoachingModal({ isOpen, onClose }: CoachingModalProps) {
                                         <input type="checkbox" name="type" value="5d_analysis" className="accent-trust-navy w-4 h-4 rounded" /> 오디세이 (스토리/자소서)
                                     </label>
                                     <label className="flex items-center gap-2 text-gray-700 cursor-pointer hover:bg-gray-50 p-1 rounded">
-                                        <input type="checkbox" name="type" value="prep_strategy" className="accent-trust-navy w-4 h-4 rounded" /> PREP 면접 답변 전략
+                                        <input type="checkbox" name="type" value="prep_strategy" className="accent-trust-navy w-4 h-4 rounded" /> PREP 기획/보고 전략
                                     </label>
                                     <label className="flex items-center gap-2 text-gray-700 cursor-pointer hover:bg-gray-50 p-1 rounded">
                                         <input type="checkbox" name="type" value="sop" className="accent-trust-navy w-4 h-4 rounded" /> 자기소개서/경력기술서
                                     </label>
                                     <label className="flex items-center gap-2 text-gray-700 cursor-pointer hover:bg-gray-50 p-1 rounded">
-                                        <input type="checkbox" name="type" value="mock_interview" className="accent-trust-navy w-4 h-4 rounded" /> 실전 모의 면접
+                                        <input type="checkbox" name="type" value="mock_interview" className="accent-trust-navy w-4 h-4 rounded" /> 실전 논리 검증
                                     </label>
                                 </div>
                             </div>

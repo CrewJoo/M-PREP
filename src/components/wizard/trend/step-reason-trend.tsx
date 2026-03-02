@@ -34,7 +34,7 @@ export function StepReasonTrend() {
                     </span>
                 )}
 
-                <div className="rounded-xl bg-sky-50 p-6 text-sky-900 border border-sky-100 mt-4">
+                <div className="rounded-xl bg-blue-50 p-6 text-blue-900 border border-blue-100 mt-4">
                     <p className="text-lg font-bold flex items-center gap-2 mb-2">
                         💡 Tip: 데이터·근거로 신뢰를 높이세요.
                     </p>

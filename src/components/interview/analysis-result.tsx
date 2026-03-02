@@ -81,7 +81,7 @@ export function AnalysisResult() {
                 addRecord({
                     type: 'prep-interview',
                     createdAt: new Date().toISOString(),
-                    question: `5D 면접 분석 (${mode === 'SCHOOL' ? '신입' : '경력'})`,
+                    question: `논리성 분석 (${mode === 'SCHOOL' ? '신입/사원' : '경력/관리자'})`,
                     data: { answers, scores: object.scores },
                     feedback: object.overallFeedback || undefined,
                     score: avgScore,
@@ -110,7 +110,7 @@ export function AnalysisResult() {
             <div className="flex flex-col items-center justify-center min-h-[600px] text-center space-y-6">
                 <Loader2 className="w-16 h-16 text-trust-navy animate-spin" />
                 <div>
-                    <h2 className="text-2xl font-bold text-gray-800">입학사정관이 기록을 분석하고 있습니다...</h2>
+                    <h2 className="text-2xl font-bold text-gray-800">AI 코치가 논리를 분석하고 있습니다...</h2>
                     <p className="text-gray-500 mt-2">5D 역량 지표를 계산하고, PREP 보고서를 작성 중입니다.</p>
                 </div>
                 {/* Safety Reset Button after delay or if stuck */}
@@ -160,7 +160,7 @@ ${data?.overallFeedback || "분석 없음"}
             {showSavedToast && (
                 <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-success-green text-white px-5 py-3 rounded-xl shadow-xl animate-in fade-in slide-in-from-top-4 duration-300 font-bold">
                     <CheckCircle2 className="h-5 w-5" />
-                    면접 기록이 저장되었습니다!
+                    논리 검증 기록이 저장되었습니다!
                 </div>
             )}
             {/* Action Bar */}
@@ -239,7 +239,7 @@ ${data?.overallFeedback || "분석 없음"}
             <div className="bg-white text-slate-800 p-8 rounded-3xl shadow-xl border border-slate-200">
                 <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
                     <AlertTriangle className="text-yellow-400" />
-                    입학사정관의 냉정한 평가
+                    AI 코치의 냉정한 평가
                 </h3>
                 <p className="text-lg leading-relaxed text-slate-300 whitespace-pre-wrap">
                     {data?.overallFeedback || "종합 평가를 생성하는 중입니다..."}

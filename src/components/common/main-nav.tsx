@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useHomeStore } from "@/store/use-home-store";
-import { useInterviewStore } from "@/lib/interview-store";
 import { Menu, X, Home, BarChart3 } from "lucide-react";
 import dynamic from "next/dynamic";
 
@@ -66,7 +65,7 @@ export function MainNav() {
                                 PREP
                             </span>
                             <div className="flex items-end gap-0.5 ml-0">
-                                {['오', '디', '세', '이'].map((char, i) => (
+                                {['생', '각', '의', '공', '식'].map((char, i) => (
                                     <div key={i} className="flex flex-col items-center">
                                         <span className="w-1 h-1 rounded-full bg-violet-500 mb-0.5 shadow-sm shrink-0" />
                                         <span className="text-2xl sm:text-3xl font-bold text-violet-600 tracking-tight group-hover:text-violet-700 transition-colors leading-none">
@@ -77,76 +76,90 @@ export function MainNav() {
                             </div>
                         </div>
                         <span className="text-[0.6rem] sm:text-[0.7rem] font-bold text-slate-400 tracking-[0.2em] uppercase ml-1 opacity-70 group-hover:opacity-100 transition-opacity mt-1">
-                            프렙베이스캠프:여러분의 진로성공 파트너
+                            AI 한·수·위가 되도록 돕는 '프렙베이스캠프'
                         </span>
                     </div>
 
                     {/* Menu Links */}
                     <div className="hidden lg:flex items-center flex-1 ml-4 lg:ml-6 xl:ml-10">
                         {/* Group 1: Text Links (Left Aligned) */}
-                        <div className="flex items-center gap-3 lg:gap-5 xl:gap-8 mr-auto pr-4 lg:pr-8 xl:pr-12">
+                        <div className="flex items-center gap-2 lg:gap-3 xl:gap-4 mr-auto pr-2 lg:pr-4 xl:pr-6">
                             {/* PREP Group */}
-                            <div className="relative flex flex-col items-start group mr-1 lg:mr-1">
-                                <span className="px-4 py-1 lg:px-5 lg:py-1.5 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap border-2 border-emerald-500 bg-emerald-500 text-white cursor-default leading-none">
-                                    PREP
+                            <div className="relative flex flex-col items-start group mr-0 lg:mr-1 py-4">
+                                <span className="px-3 py-1 lg:px-4 lg:py-2 rounded-full text-[11px] lg:text-sm font-bold whitespace-nowrap border border-emerald-300 bg-emerald-50 text-emerald-700 cursor-default leading-none shadow-sm transition-transform group-hover:scale-105">
+                                    Cheat Key
                                 </span>
-                                <div className="absolute top-full left-0 mt-1 py-2.5 px-6 bg-white border border-emerald-300 rounded-2xl flex flex-row gap-8 text-sm font-medium text-slate-600 shadow-xl w-max z-50">
-                                    <Link href="/about/prep" className="text-emerald-600 hover:text-emerald-700 transition-colors whitespace-nowrap flex items-center gap-2">
+                                <div className="absolute top-12 left-0 mt-4 lg:mt-5 py-1.5 lg:py-2 px-6 lg:px-8 bg-white border border-emerald-300 rounded-full flex flex-row items-center gap-6 lg:gap-10 text-xs lg:text-sm font-medium text-slate-600 shadow-xl w-max z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left group-hover:translate-y-0 -translate-y-2 pointer-events-none group-hover:pointer-events-auto">
+                                    <Link href="/about/prep" className="text-emerald-600 hover:text-emerald-700 transition-colors whitespace-nowrap flex items-center gap-1.5 lg:gap-2">
                                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                                         PREP이란?
                                     </Link>
-                                    <Link href="/prep-word-dancing" className="text-emerald-600 hover:text-emerald-700 transition-colors whitespace-nowrap flex items-center gap-2">
+                                    <Link href="/prep-word-dancing" className="text-emerald-600 hover:text-emerald-700 transition-colors whitespace-nowrap flex items-center gap-1.5 lg:gap-2">
                                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                        PREP워드댄싱
+                                        워드댄싱
                                     </Link>
-                                    <Link href="/prep-training" className="text-emerald-600 hover:text-emerald-700 transition-colors whitespace-nowrap flex items-center gap-2">
+                                    <Link href="/prep-training" className="text-emerald-600 hover:text-emerald-700 transition-colors whitespace-nowrap flex items-center gap-1.5 lg:gap-2">
                                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                        PREP트레이닝
+                                        스텝 트레이닝
                                     </Link>
-                                    <Link href="/prep-transform" className="text-emerald-600 hover:text-emerald-700 transition-colors whitespace-nowrap flex items-center gap-2">
+                                    <Link href="/prep-transform" className="text-emerald-600 hover:text-emerald-700 transition-colors whitespace-nowrap flex items-center gap-1.5 lg:gap-2">
                                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                        PREP변환기
+                                        콩떡찰떡
                                     </Link>
-                                    <Link href="/prep-level-check" className="text-emerald-600 hover:text-emerald-700 transition-colors whitespace-nowrap flex items-center gap-2">
+                                    <Link href="/prep-level-check" className="text-emerald-600 hover:text-emerald-700 transition-colors whitespace-nowrap flex items-center gap-1.5 lg:gap-2">
                                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
                                         PREP레벨체크
                                     </Link>
                                 </div>
                             </div>
-                            <Link href="/5d-odyssey" className="text-sm lg:text-sm xl:text-base font-bold text-violet-600 hover:text-violet-700 transition-all whitespace-nowrap">
-                                5D오디세이
-                            </Link>
-                            <Link href="/5d-gwasaeteuk" className="text-sm lg:text-sm xl:text-base font-bold text-violet-600 hover:text-violet-700 transition-all whitespace-nowrap">
-                                5D과세특
-                            </Link>
-                            <Link href="/5d-analysis" className="text-sm lg:text-sm xl:text-base font-bold text-violet-600 hover:text-violet-700 transition-all whitespace-nowrap">
-                                5D학생부
-                            </Link>
-                            <Link href="/5d-elenchus" className="text-sm lg:text-sm xl:text-base font-bold text-violet-600 hover:text-violet-700 transition-all whitespace-nowrap">
-                                5D산파술
-                            </Link>
-                            <Link href="/5d-interview" className="text-sm lg:text-sm xl:text-base font-bold text-violet-600 hover:text-violet-700 transition-all whitespace-nowrap" onClick={() => useInterviewStore.getState().reset()}>
-                                5D모의면접
-                            </Link>
+
+                            {/* Master Key Group */}
+                            <div className="relative flex flex-col items-start group mr-0 lg:mr-1 py-4">
+                                <span className="px-3 py-1 lg:px-4 lg:py-2 rounded-full text-[11px] lg:text-sm font-bold whitespace-nowrap border border-violet-300 bg-violet-50 text-violet-700 cursor-default leading-none shadow-sm transition-transform group-hover:scale-105">
+                                    Master Key
+                                </span>
+                                <div className="absolute top-12 left-0 mt-4 lg:mt-5 py-1.5 lg:py-2 px-6 lg:px-8 bg-white border border-violet-300 rounded-full flex flex-row items-center gap-6 lg:gap-10 text-xs lg:text-sm font-medium text-slate-600 shadow-xl w-max z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left group-hover:translate-y-0 -translate-y-2 pointer-events-none group-hover:pointer-events-auto">
+                                    <Link href="/m-prep-intro" className="text-violet-600 hover:text-violet-700 transition-colors whitespace-nowrap flex items-center gap-1.5 lg:gap-2">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-violet-500"></span>
+                                        M-PREP이란?
+                                    </Link>
+                                    <Link href="/m-prep-models" className="text-violet-600 hover:text-violet-700 transition-colors whitespace-nowrap flex items-center gap-1.5 lg:gap-2">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-violet-500"></span>
+                                        10사고모델
+                                    </Link>
+                                    <Link href="/m-prep-cases" className="text-violet-600 hover:text-violet-700 transition-colors whitespace-nowrap flex items-center gap-1.5 lg:gap-2">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-violet-500"></span>
+                                        실무사례
+                                    </Link>
+                                    <Link href="/m-prep-simulator" className="text-violet-600 hover:text-violet-700 transition-colors whitespace-nowrap flex items-center gap-1.5 lg:gap-2">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-violet-500"></span>
+                                        프롬프트 생성기
+                                    </Link>
+                                </div>
+                            </div>
+
+                            {/* RFP-PREP Pill Link */}
+                            <div className="relative flex flex-col items-start mr-0 lg:mr-1 py-4">
+                                <Link
+                                    href="/prep-rfp"
+                                    className="px-3 py-1 lg:px-4 lg:py-2 rounded-full text-[11px] lg:text-sm font-bold whitespace-nowrap border border-rose-300 bg-rose-50 text-rose-700 hover:bg-rose-100 hover:text-rose-800 leading-none"
+                                >
+                                    RFP-제안서
+                                </Link>
+                            </div>
                         </div>
 
                         {/* Group 2: Action Buttons (Right Aligned) */}
-                        <div className="flex items-center gap-2">
-                            <Link
-                                href="/danbi-interview"
-                                className="px-2 py-1 lg:px-3 lg:py-1.5 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap transition-all bg-blue-600 text-white hover:bg-blue-700 active:scale-95 shadow-sm hover:shadow-md"
-                            >
-                                AI최종분석
-                            </Link>
+                        <div className="flex items-center gap-1 sm:gap-2">
                             <button
                                 onClick={() => setShowGuide(true)}
-                                className="px-2 py-1 lg:px-3 lg:py-1.5 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap transition-all border-2 border-amber-400 bg-white text-amber-600 hover:bg-amber-50 hover:border-amber-500 active:scale-95"
+                                className="px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap transition-all text-slate-600 bg-slate-100/80 hover:bg-slate-200/80 hover:text-slate-900 active:scale-95 shadow-sm border border-slate-200/50"
                             >
                                 워크숍
                             </button>
                             <button
                                 onClick={() => setShowCoaching(true)}
-                                className="px-2 py-1 lg:px-3 lg:py-1.5 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap transition-all border-2 border-amber-400 text-amber-600 bg-white hover:bg-amber-50 hover:border-amber-500 active:scale-95"
+                                className="px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap transition-all text-slate-600 bg-slate-100/80 hover:bg-slate-200/80 hover:text-slate-900 active:scale-95 shadow-sm border border-slate-200/50"
                             >
                                 1:1 코칭
                             </button>
@@ -174,97 +187,103 @@ export function MainNav() {
 
             {/* Mobile Menu Overlay */}
             {isMobileMenuOpen && (
-                <div className="fixed inset-0 z-[90] bg-white/95 backdrop-blur-md pt-40 px-6 lg:hidden flex flex-col items-center gap-6 animate-in fade-in slide-in-from-top-5 duration-200 overflow-y-auto pb-32">
-                    <Link
-                        href="/about/prep"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-lg font-bold text-emerald-600 hover:text-emerald-700 py-2"
-                    >
-                        PREP이란?
-                    </Link>
-                    <Link
-                        href="/prep-word-dancing"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-lg font-bold text-emerald-600 hover:text-emerald-700 py-2"
-                    >
-                        PREP 워드댄싱
-                    </Link>
-                    <Link
-                        href="/prep-training"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-lg font-bold text-emerald-600 hover:text-emerald-700 py-2"
-                    >
-                        PREP 트레이닝
-                    </Link>
-                    <Link
-                        href="/prep-transform"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-lg font-bold text-emerald-600 hover:text-emerald-700 py-2"
-                    >
-                        PREP 변환기
-                    </Link>
-                    <Link
-                        href="/prep-level-check"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-lg font-bold text-amber-600 hover:text-amber-700 py-2 flex items-center gap-2"
-                    >
-                        <BarChart3 className="w-5 h-5" />
-                        PREP 레벨체크
-                    </Link>
-                    <Link
-                        href="/5d-odyssey"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-lg font-bold text-violet-600 hover:text-violet-700 py-2"
-                    >
-                        5D 오디세이
-                    </Link>
-                    <Link
-                        href="/5d-gwasaeteuk"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-lg font-bold text-violet-600 hover:text-violet-700 py-2"
-                    >
-                        5D 과세특
-                    </Link>
-                    <Link
-                        href="/5d-analysis"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-lg font-bold text-violet-600 hover:text-violet-700 py-2"
-                    >
-                        5D 학생부
-                    </Link>
-                    <Link
-                        href="/5d-elenchus"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-lg font-bold text-violet-600 hover:text-violet-700 py-2"
-                    >
-                        5D 산파술
-                    </Link>
-                    <Link
-                        href="/5d-interview"
-                        onClick={() => {
-                            setIsMobileMenuOpen(false);
-                            useInterviewStore.getState().reset();
-                        }}
-                        className="text-lg font-bold text-violet-600 hover:text-violet-700 py-2"
-                    >
-                        5D 모의면접
-                    </Link>
+                <div className="fixed inset-0 z-[90] bg-white/95 backdrop-blur-md pt-40 px-6 lg:hidden flex flex-col items-center gap-8 animate-in fade-in slide-in-from-top-5 duration-200 overflow-y-auto pb-32">
+                    {/* Cheat Key Group */}
+                    <div className="flex flex-col items-center gap-3 w-full">
+                        <span className="px-4 py-1.5 rounded-full text-sm font-bold border border-emerald-300 bg-emerald-50 text-emerald-700 mb-2 mt-4">
+                            Cheat Key
+                        </span>
+                        <Link
+                            href="/about/prep"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="text-lg font-bold text-emerald-600 hover:text-emerald-700"
+                        >
+                            PREP이란?
+                        </Link>
+                        <Link
+                            href="/prep-word-dancing"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="text-lg font-bold text-emerald-600 hover:text-emerald-700"
+                        >
+                            워드댄싱
+                        </Link>
+                        <Link
+                            href="/prep-training"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="text-lg font-bold text-emerald-600 hover:text-emerald-700"
+                        >
+                            스텝 트레이닝
+                        </Link>
+                        <Link
+                            href="/prep-transform"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="text-lg font-bold text-emerald-600 hover:text-emerald-700"
+                        >
+                            콩떡찰떡
+                        </Link>
+                        <Link
+                            href="/prep-level-check"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="text-lg font-bold text-emerald-600 hover:text-emerald-700"
+                        >
+                            PREP레벨체크
+                        </Link>
+                    </div>
+
+                    {/* Master Key Group */}
+                    <div className="flex flex-col items-center gap-3 w-full">
+                        <span className="px-4 py-1.5 rounded-full text-sm font-bold border border-violet-300 bg-violet-50 text-violet-700 mb-2">
+                            Master Key
+                        </span>
+                        <Link
+                            href="/m-prep-intro"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="text-lg font-bold text-violet-600 hover:text-violet-700"
+                        >
+                            M-PREP이란?
+                        </Link>
+                        <Link
+                            href="/m-prep-models"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="text-lg font-bold text-violet-600 hover:text-violet-700"
+                        >
+                            10사고모델
+                        </Link>
+                        <Link
+                            href="/m-prep-cases"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="text-lg font-bold text-violet-600 hover:text-violet-700"
+                        >
+                            실무사례
+                        </Link>
+                        <Link
+                            href="/m-prep-simulator"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="text-lg font-bold text-violet-600 hover:text-violet-700"
+                        >
+                            프롬프트 생성기
+                        </Link>
+                    </div>
+
+                    {/* RFP-제안서 Group */}
+                    <div className="flex flex-col items-center w-full mt-2">
+                        <Link
+                            href="/prep-rfp"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="px-5 py-1.5 rounded-full text-base font-bold border border-rose-300 bg-rose-50 text-rose-700 hover:bg-rose-100 hover:text-rose-800 transition-colors"
+                        >
+                            RFP-제안서
+                        </Link>
+                    </div>
                     {/* 액션 버튼 그룹 (모바일) */}
                     <div className="mt-6 pt-6 border-t border-slate-200 flex flex-col gap-3 w-full">
-                        <Link
-                            href="/danbi-interview"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="flex items-center justify-center px-8 py-3.5 rounded-full font-bold text-white bg-blue-600 shadow-sm hover:bg-blue-700 active:scale-95 transition-all text-lg"
-                        >
-                            AI 최종분석
-                        </Link>
                         <div className="flex gap-3">
                             <button
                                 onClick={() => {
                                     setIsMobileMenuOpen(false);
                                     setShowGuide(true);
                                 }}
-                                className="flex-1 px-6 py-3 rounded-full font-bold border-2 border-amber-400 text-amber-600 bg-white hover:bg-amber-50 active:scale-95 transition-all"
+                                className="flex-1 px-6 py-3 rounded-full font-bold border border-slate-200/80 text-slate-700 bg-slate-100 hover:bg-slate-200 active:scale-95 transition-all shadow-sm"
                             >
                                 워크숍
                             </button>
@@ -273,7 +292,7 @@ export function MainNav() {
                                     setIsMobileMenuOpen(false);
                                     setShowCoaching(true);
                                 }}
-                                className="flex-1 px-6 py-3 rounded-full font-bold border-2 border-amber-400 text-amber-600 bg-white hover:bg-amber-50 active:scale-95 transition-all"
+                                className="flex-1 px-6 py-3 rounded-full font-bold border border-slate-200/80 text-slate-700 bg-slate-100 hover:bg-slate-200 active:scale-95 transition-all shadow-sm"
                             >
                                 1:1 코칭
                             </button>

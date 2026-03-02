@@ -34,9 +34,9 @@ export function StepExample() {
                     </span>
                 )}
 
-                <div className="rounded-xl bg-emerald-50 p-6 text-emerald-900 border border-emerald-100 mt-4">
+                <div className="rounded-xl bg-blue-50 p-6 text-blue-900 border border-blue-100 mt-4">
                     <p className="text-lg font-bold flex items-center gap-2 mb-3">
-                        💡 주장을 가장 설득력 있게 뒷받침하는 증거를 선택하세요
+                        💡 Tip: 주장을 가장 설득력 있게 뒷받침하는 증거를 선택하세요
                     </p>
                     <ul className="space-y-2 text-base opacity-90">
                         <li><span className="font-bold">📊 데이터/통계:</span> 수치와 출처로 객관성을 확보하세요.</li>

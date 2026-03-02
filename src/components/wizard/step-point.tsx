@@ -34,7 +34,7 @@ export function StepPoint() {
                     </span>
                 )}
 
-                <div className="rounded-xl bg-emerald-50 p-6 text-emerald-900 border border-emerald-100 mt-4">
+                <div className="rounded-xl bg-blue-50 p-6 text-blue-900 border border-blue-100 mt-4">
                     <p className="text-lg font-bold flex items-center gap-2 mb-2">
                         💡 Tip: 두괄식으로 말하세요.
                     </p>

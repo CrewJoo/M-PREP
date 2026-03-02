@@ -34,7 +34,7 @@ export function StepPointDifficulty() {
                     </span>
                 )}
 
-                <div className="rounded-xl bg-orange-50 p-6 text-orange-900 border border-orange-100 mt-4">
+                <div className="rounded-xl bg-blue-50 p-6 text-blue-900 border border-blue-100 mt-4">
                     <p className="text-lg font-bold flex items-center gap-2 mb-2">
                         💡 Tip: 고난을 솔직하게, 그러나 성장의 시작으로.
                     </p>

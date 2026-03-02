@@ -210,16 +210,16 @@ export function FeedbackView() {
                     {object && (
                         <div className="space-y-4">
                             <Button
-                                variant={showScript ? "secondary" : "outline"}
+                                variant="outline"
                                 size="lg"
                                 onClick={() => setShowScript(!showScript)}
-                                className={`w-full justify-between h-14 text-lg border transition-all ${showScript ? 'bg-success-green border-success-green text-white hover:bg-green-600' : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'}`}
+                                className={`w-full justify-between h-14 text-lg border transition-all ${showScript ? 'bg-success-green border-success-green text-white hover:bg-green-700' : 'bg-white border-success-green text-success-green hover:bg-success-green hover:text-white group'}`}
                             >
                                 <span className="flex items-center font-bold">
-                                    <Volume2 className={`mr-2 h-5 w-5 ${showScript ? 'text-green-100' : 'text-gray-500'}`} />
-                                    합격 스크립트
+                                    <Volume2 className={`mr-2 h-5 w-5 ${showScript ? 'text-white' : 'text-success-green group-hover:text-white'}`} />
+                                    제안 스크립트
                                 </span>
-                                <span className={`text-sm ${showScript ? 'text-green-100' : 'text-gray-400'}`}>{showScript ? '접기' : '펼치기'}</span>
+                                <span className={`text-sm ${showScript ? 'text-green-100' : 'text-success-green group-hover:text-white'}`}>{showScript ? '접기' : '펼치기'}</span>
                             </Button>
 
                             {showScript && object?.improved_prep && (
@@ -253,7 +253,7 @@ export function FeedbackView() {
 
                 <Button
                     size="lg"
-                    className="bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg text-lg"
+                    className="bg-blue-600 text-white hover:bg-blue-700 shadow-lg text-lg"
                     onClick={() => {
                         window.scrollTo({ top: 0, behavior: "smooth" });
                         reset();

@@ -34,7 +34,7 @@ export function StepPointDream() {
                     </span>
                 )}
 
-                <div className="rounded-xl bg-purple-50 p-6 text-purple-900 border border-purple-100 mt-4">
+                <div className="rounded-xl bg-blue-50 p-6 text-blue-900 border border-blue-100 mt-4">
                     <p className="text-lg font-bold flex items-center gap-2 mb-2">
                         💡 Tip: 꿈을 하나의 선명한 문장으로.
                     </p>

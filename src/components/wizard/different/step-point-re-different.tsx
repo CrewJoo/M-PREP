@@ -34,7 +34,7 @@ export function StepPointReDifferent() {
                     </span>
                 )}
 
-                <div className="rounded-xl bg-teal-50 p-6 text-teal-900 border border-teal-100 mt-4">
+                <div className="rounded-xl bg-blue-50 p-6 text-blue-900 border border-blue-100 mt-4">
                     <p className="text-lg font-bold flex items-center gap-2 mb-2">
                         💡 Tip: 나의 다름이 조직에 주는 가치를 선언하세요.
                     </p>
@@ -50,7 +50,7 @@ export function StepPointReDifferent() {
                 <Button variant="outline" onClick={() => setStep(3)} className="w-1/3">
                     이전
                 </Button>
-                <Button type="submit" className="w-2/3 bg-teal-600 text-white hover:bg-teal-700 py-4 text-lg font-bold rounded-xl shadow-lg shadow-teal-200">
+                <Button type="submit" className="w-2/3 bg-blue-600 text-white hover:bg-blue-700 py-4 text-lg font-bold rounded-xl shadow-lg shadow-blue-200">
                     AI 분석 받기
                 </Button>
             </div>

@@ -234,7 +234,7 @@ export const useHistoryStore = create<HistoryState>()(
                 const typeConfig: { type: PracticeType; label: string; color: string }[] = [
                     { type: 'prep-training', label: 'PREP 트레이닝', color: '#10B981' },
                     { type: 'prep-transform', label: 'PREP 변환', color: '#8B5CF6' },
-                    { type: 'prep-interview', label: 'AI 면접', color: '#1E3A8A' },
+                    { type: 'prep-interview', label: '논리 검증', color: '#1E3A8A' },
                     { type: 'elenchus', label: '엘렌코스', color: '#F59E0B' },
                     { type: 'prep-word-dancing', label: 'PREP 워드댄싱', color: '#f59e0b' },
                 ];
@@ -246,7 +246,7 @@ export const useHistoryStore = create<HistoryState>()(
             },
         }),
         {
-            name: 'prep-history-storage',
+            name: 'm-prep-history',
             storage: createJSONStorage(() => localStorage),
         }
     )

@@ -64,11 +64,11 @@ export async function POST(req: NextRequest) {
         const { object } = await generateObject({
             model: openai("gpt-4o"),
             schema: analysisResultSchema,
-            system: `당신은 20년 경력의 대학 입학사정관이자 진학 코치입니다. 
-            지원자의 학교생활기록부/포트폴리오를 분석하여 '5D-Say' 프레임워크(Dream, Different, Difficulty, Stand, Trend)에 맞춰 핵심 역량을 도출하고, 
-            이를 입학사정관을 설득할 수 있는 논리적인 PREP 구조(Point-Reason-Example) 답변으로 변환해야 합니다.`,
+            system: `당신은 20년 경력의 C레벨 임원이자 비즈니스 전략 코치입니다. 
+            제출자의 이력서/포트폴리오를 분석하여 '5D-Say' 프레임워크(Dream, Different, Difficulty, Stand, Trend)에 맞춰 핵심 역량을 도출하고, 
+            이를 평가자와 의사결정자를 설득할 수 있는 논리적인 PREP 구조(Point-Reason-Example) 답변으로 변환해야 합니다.`,
             prompt: `
-            [지원자 학교생활기록부/포트폴리오 내용]
+            [작성자 이력서/포트폴리오 내용]
             ---
             ${truncatedText}
             ---
@@ -76,15 +76,15 @@ export async function POST(req: NextRequest) {
             위 내용을 바탕으로 다음 5가지 차원 각각에 가장 적합한 경험, 성과, 또는 가치관을 찾아 분석해주세요.
             각 항목당 하나씩, 총 5개의 분석 결과를 생성해야 합니다.
 
-            1. DREAM (비전/목표): 지원자가 추구하는 가치, 장기적 목표, 전공에 대한 진정성 있는 열정 (Color: blue)
-            2. DIFFERENT (차별성): 남들과 다른 고유한 강점, 학업적 역량, 정량적 성과 (Color: purple)
+            1. DREAM (비전/목표): 작성자가 추구하는 비즈니스 가치, 장기적 커리어 목표, 직무에 대한 진정성 있는 열정 (Color: blue)
+            2. DIFFERENT (차별성): 남들과 다른 고유한 강점, 실무 역량, 정량적 성과 (Color: purple)
             3. DIFFICULTY (역경 극복): 문제 해결 능력, 실패를 통한 성장, 갈등 해결, 회복 탄력성 (Color: red)
-            4. STAND (학업 윤리/태도): 원칙 준수, 협업 태도, 책임감, 성실성, 학업적 가치관 (Color: green)
-            5. TREND (트렌드 이해): 전공 분야 최신 기술/이슈에 대한 관심, 학습 능력, 학술 통찰력 (Color: orange)
+            4. STAND (직업 윤리/태도): 원칙 준수, 협업 태도, 책임감, 성실성, 비즈니스 가치관 (Color: green)
+            5. TREND (트렌드 이해): 산업 분야 최신 기술/이슈에 대한 관심, 학습 능력, 비즈니스 통찰력 (Color: orange)
 
             [작성 가이드]
             - label과 color는 위 정의된 대로 정확히 매핑하세요.
-            - creative_title: 입학사정관의 이목을 끄는 카피라이팅 스타일로 작성하세요.
+            - creative_title: 의사결정자의 이목을 끄는 카피라이팅 스타일로 작성하세요.
             - source_text: 분석의 근거가 되는 서류 내 원문을 인용하세요.
             - prep:
                 - Point: 두괄식으로 결론 제시 ("저는 ~한 역량을 갖추고 있습니다.")

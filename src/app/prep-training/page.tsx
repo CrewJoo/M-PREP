@@ -12,26 +12,31 @@ import { ModeSelection } from "@/components/prep/mode-selection";
 import { useEffect } from "react";
 import React from "react";
 import { motion } from "framer-motion";
-import { Dumbbell, Leaf, Sprout, TreeDeciduous, TreePine, Mountain } from "lucide-react";
+import { Dumbbell, GraduationCap, BookOpen } from "lucide-react";
 import { useHistoryStore, GrowthLevel } from "@/lib/history-store";
 import { SkillDashboard } from "@/components/prep/skill-dashboard";
 import { ThreeLeavesIcon } from "@/components/icons/three-leaves-icon";
+import { QUESTIONS_INTERVIEW, QUESTIONS_STUDENT } from "@/lib/constants";
 
 export default function PrepPage() {
-    const { currentStep, mode, setMode, reset } = usePrepStore();
+    const { currentStep, mode, setMode, setQuestion, reset } = usePrepStore();
     const store = useHistoryStore();
 
     useEffect(() => {
         // Reset state on mount to force selection
         reset();
-    }, [reset]);
+        // Automatically start with INTERVIEW mode if no mode is set
+        setMode('INTERVIEW');
+        const list = QUESTIONS_INTERVIEW;
+        setQuestion(list[Math.floor(Math.random() * list.length)] ?? null);
+    }, [reset, setMode, setQuestion]);
 
     const getStepContent = () => {
         switch (currentStep) {
             case 1:
                 return {
                     title: "결론부터 말하세요 (Point)",
-                    description: "입학사정관의 뇌는 피로합니다. 두괄식으로 핵심을 꽂아주세요.",
+                    description: "의사결정자의 뇌는 피로합니다. 두괄식으로 핵심을 꽂아주세요.",
                     component: <StepPoint />,
                 };
             case 2:
@@ -54,7 +59,7 @@ export default function PrepPage() {
                 };
             case 5:
                 return {
-                    title: "AI 입학사정관의 피드백",
+                    title: "AI 코치의 피드백",
                     description: "당신의 답변을 냉철하게 분석했습니다. 아래 스크립트를 확인하세요.",
                     component: <FeedbackView />
                 };
@@ -67,72 +72,41 @@ export default function PrepPage() {
         }
     };
 
-    if (!mode) {
-        return (
-            <div className="min-h-screen relative pb-20 p-6">
-                {/* <HomeButton /> */}
+    // Tab switcher logic
+    const handleTabSwitch = (newMode: 'INTERVIEW' | 'WORK') => {
+        if (mode === newMode) return;
+        setMode(newMode);
+        const list = newMode === 'WORK' ? QUESTIONS_STUDENT : QUESTIONS_INTERVIEW;
+        setQuestion(list[Math.floor(Math.random() * list.length)] ?? null);
+    };
 
-                <div className="max-w-6xl mx-auto px-6 pt-52">
-                    {/* Header */}
-                    <div className="text-center mb-16 space-y-6">
-                        <motion.h1
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="text-4xl sm:text-5xl font-black text-trust-navy tracking-tight drop-shadow-sm flex items-center justify-center gap-4"
-                        >
-                            <div className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
-                                <Dumbbell className="w-10 h-10 text-white" />
-                            </div>
-                            <span><span className="text-emerald-600">PREP</span> 트레이닝</span>
-                        </motion.h1>
-                        <motion.p
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                            className="text-xl text-slate-600 mt-8 md:mt-10 max-w-3xl mx-auto break-keep leading-relaxed bg-white p-6 rounded-2xl border border-slate-200 shadow-xl"
-                        >
-                            <span className="text-emerald-600 font-bold">PREP 트레이닝</span>은 <br />당신의 생각을 가장 논리적인 구조로 다듬어주는<br />실전 훈련 파트너입니다.<br className="hidden sm:block" />
-                            <br />
-                            <span className="text-emerald-600 font-bold">4단계 가이드</span>를 따라 <br />핵심 주장을, 타당한 근거, 생생한 사례를 연결하다 보면<br /> 어느새 설득력 있는 답변이 완성됩니다.
-                        </motion.p>
-                    </div>
-
-                    {(() => {
-                        const trainingInfo = store.getPracticeTierInfo('prep-training');
-                        const IconComp = ThreeLeavesIcon;
-                        return (
-                            <SkillDashboard
-                                title="PREP 트레이닝"
-                                subtitle="PREP의 내공을 쌓아 더 탄탄한 논리력을 갖추세요!"
-                                tierName={<span><span className="text-blue-600">PREP 트레이닝</span> 레벨</span>}
-                                tierIndex={trainingInfo.tierIndex}
-                                tierIconNode={React.createElement(IconComp, { className: "w-8 h-8 text-blue-500" })}
-                                currentScore={trainingInfo.count}
-                                scoreLabel="회"
-                                remainingScore={trainingInfo.remaining}
-                                progressPercent={trainingInfo.progress}
-                                theme="blue"
-                                href="#modes" // Just a dummy anchor if they're already on the page
-                                actionLabel="아래에서 시작"
-                            />
-                        );
-                    })()}
-
-                    <div id="modes" className="max-w-4xl mx-auto text-center mb-8 mt-12">
-                        <span className="inline-block py-1 px-3 rounded-full bg-emerald-50 text-emerald-600 text-sm font-bold mb-2 border border-emerald-100">
-                            TRAINING MODE
-                        </span>
-                    </div>
-
-                    <ModeSelection
-                        onSelect={(m) => setMode(m)}
-                        title="어떤 상황을 연습하고 싶으신가요?"
-                        theme="emerald"
-                    />
-                </div>
+    // Tab UI Component
+    const CategoryTabs = (
+        <div className="flex justify-center items-center">
+            <div className="bg-slate-100 p-1.5 flex items-center gap-1 rounded-full border border-slate-200 shadow-sm max-w-fit mx-auto overflow-x-auto scroolbar-hide">
+                <button
+                    onClick={() => handleTabSwitch('INTERVIEW')}
+                    className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm sm:text-base transition-all duration-300 ${mode === 'INTERVIEW'
+                        ? 'bg-white text-blue-600 shadow-md ring-1 ring-slate-200/50 scale-100'
+                        : 'text-slate-500 hover:bg-slate-200/50 hover:text-slate-700 scale-95'
+                        }`}
+                >
+                    <GraduationCap className="w-5 h-5" />
+                    비즈니스 보고 / 기안
+                </button>
+                <button
+                    onClick={() => handleTabSwitch('WORK')}
+                    className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm sm:text-base transition-all duration-300 ${mode === 'WORK'
+                        ? 'bg-white text-blue-600 shadow-md ring-1 ring-slate-200/50 scale-100'
+                        : 'text-slate-500 hover:bg-slate-200/50 hover:text-slate-700 scale-95'
+                        }`}
+                >
+                    <BookOpen className="w-5 h-5" />
+                    이메일 / 메신저
+                </button>
             </div>
-        );
-    }
+        </div>
+    );
 
     const stepInfo = getStepContent();
 
@@ -141,21 +115,22 @@ export default function PrepPage() {
             title={stepInfo.title}
             description={stepInfo.description}
             pageTitle={
-                <span className="flex items-center justify-center gap-4">
-                    <span className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
-                        <Dumbbell className="w-10 h-10 text-white" />
+                <span className="flex items-center justify-center gap-3">
+                    <span className="bg-slate-900 rounded-full p-2.5 flex items-center justify-center shadow-lg">
+                        <Dumbbell className="w-8 h-8 text-white" />
                     </span>
-                    <span><span className="text-emerald-600">PREP</span> 트레이닝</span>
+                    <span className="text-slate-900">스텝 트레이닝</span>
                 </span>
             }
             pageDescription={
                 <>
-                    <span className="text-emerald-600 font-bold">PREP 트레이닝</span>은 <br />당신의 생각을 가장 논리적인 구조로 다듬어주는<br />실전 훈련 파트너입니다.<br className="hidden sm:block" />
-                    <br />
-                    <span className="text-emerald-600 font-bold">4단계 가이드</span>를 따라 <br />핵심 주장을, 타당한 근거, 생생한 사례를 연결하다 보면<br /> 어느새 설득력 있는 답변이 완성됩니다.
+                    <span className="text-blue-600 font-bold">PREP 트레이닝</span>은 주어진 질문에 대해 논리적으로 답변하는 실전 훈련입니다.<br className="hidden sm:block" />
+                    Point(결론), Reason(이유), Example(사례), Point(결론 재강조)의 4단계를 따라가며 구조적인 말하기/글쓰기를 체화하고, <br className="hidden sm:block" />
+                    마지막에 <span className="text-blue-600 font-bold">AI 코치</span>에게 답변에 대한 상세한 피드백을 받아보세요.
                 </>
             }
-            theme="emerald"
+            headerAccessory={currentStep === 1 ? CategoryTabs : null}
+            theme="blue"
         >
             {stepInfo.component}
         </WizardLayout>

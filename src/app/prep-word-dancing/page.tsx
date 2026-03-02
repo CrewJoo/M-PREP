@@ -79,11 +79,11 @@ export default function WordDancingPage() {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                     >
-                        <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-trust-navy drop-shadow-sm flex items-center justify-center gap-4">
-                            <div className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
+                        <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-slate-900 drop-shadow-sm flex items-center justify-center gap-4">
+                            <div className="bg-slate-900 rounded-full p-3 flex items-center justify-center shadow-lg">
                                 <Shuffle className="w-10 h-10 text-white" />
                             </div>
-                            <span><span className="text-emerald-600">PREP</span> 워드댄싱</span>
+                            <span>PREP 워드댄싱</span>
                         </h1>
                         <p className="text-xl text-slate-600 mt-8 md:mt-10 max-w-3xl mx-auto break-keep leading-relaxed bg-white p-6 rounded-2xl border border-slate-200 shadow-xl">
                             <span className="text-emerald-600 font-bold">워드 댄싱</span>은 흩어진 문장 조각들을 조립하며 <br className="hidden sm:block" />PREP(논리의 흐름)을 감각적으로 익히는 게임형 훈련입니다.

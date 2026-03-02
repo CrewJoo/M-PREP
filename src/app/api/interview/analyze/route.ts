@@ -27,15 +27,15 @@ const analysisSchema = z.object({
         stand: z.number().min(0).max(10).describe("STAND 항목 평가 점수 (0-10)"),
         different: z.number().min(0).max(10).describe("DIFFERENT 항목 평가 점수 (0-10)"),
     }).describe("각 항목별 역량 균형도를 나타내는 점수"),
-    overallFeedback: z.string().describe("지원자에 대한 냉정하고 객관적인 종합 평가 (500자 내외). 입학사정관의 시선에서 대입 합격 가능성이나 치명적인 약점 등을 직설적으로 언급할 것."),
+    overallFeedback: z.string().describe("제안 및 기획에 대한 냉정하고 객관적인 종합 평가 (500자 내외). 의사결정자의 시선에서 비즈니스 타당성 부족이나 논리적 비약 등을 직설적으로 언급할 것."),
 });
 
 export async function POST(req: Request) {
     const { answers, mode } = await req.json();
 
-    const modeLabel = mode === 'SCHOOL' ? '고교생 대입 심층 면접 (학생부 종합 전형)'
-        : mode === 'TRANSFER' ? '대학 편입학 심층 면접 (전공 적합성 중심)'
-            : '대입/진학 심층 면접 (지원자 종합 평가)';
+    const modeLabel = mode === 'SCHOOL' ? '신입/사원 비즈니스 논리 검증'
+        : mode === 'TRANSFER' ? '경력/관리자 비즈니스 전략 검증'
+            : '비즈니스 기획 및 제안 심층 평가';
 
     const context = `
     [Interview Mode]: ${modeLabel}
@@ -49,8 +49,8 @@ export async function POST(req: Request) {
     `;
 
     const roleDescription = mode === 'TRANSFER'
-        ? "You are an expert Admissions Officer evaluating candidates for university transfer."
-        : "You are an expert Admissions Officer evaluating high school students for university admission.";
+        ? "You are an expert Business Coach evaluating strategies for senior management."
+        : "You are an expert Business Coach evaluating logical structures for new employees.";
 
     const systemPrompt = `
     # Role
@@ -75,7 +75,7 @@ export async function POST(req: Request) {
     1. [Matrix] Refine/Restructure each 5D answer into a PREP format (Point, Reason, Example, Point). Infill missing logic if necessary.
     2. [Feedback] Provide specific, calculating constructive feedback for improvement for each dimension.
     3. [Scores] Evaluate the quality on a scale of 0-10.
-    4. [Overall Feedback] Provide a comprehensive, cold, and objective review of the candidate. Mention specific strengths but focus on critical weaknesses or areas that need significant improvement to pass the university admission interview.
+    4. [Overall Feedback] Provide a comprehensive, cold, and objective review of the plan/idea. Mention specific strengths but focus on critical logical flaws or areas that need significant improvement to be approved by a C-level executive.
     
     Output in Korean.
     `;

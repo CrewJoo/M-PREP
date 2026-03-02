@@ -13,7 +13,7 @@ import { ModeSelection } from "@/components/prep/mode-selection";
 import { usePrepStore } from "@/lib/store";
 import { motion } from "framer-motion";
 import { WizardLayout } from "@/components/wizard/wizard-layout";
-import { ArrowRightLeft, Leaf, Sprout, TreeDeciduous, TreePine, Mountain, RotateCcw } from "lucide-react";
+import { ArrowRightLeft, Leaf, Sprout, TreeDeciduous, TreePine, Mountain, RotateCcw, GraduationCap, BookOpen } from "lucide-react";
 import { GrowthLevel } from "@/lib/history-store";
 import { SkillDashboard } from "@/components/prep/skill-dashboard";
 
@@ -42,7 +42,11 @@ export default function TransformPage() {
 
     useEffect(() => {
         reset();
-    }, [reset]);
+        // Automatically start with INTERVIEW mode if no mode is set
+        setMode('INTERVIEW');
+        const list = QUESTIONS_INTERVIEW;
+        setQuestion(list[Math.floor(Math.random() * list.length)] ?? null);
+    }, [reset, setMode]);
 
     useEffect(() => {
         if (mode) {
@@ -92,72 +96,42 @@ export default function TransformPage() {
         savedRef.current = false;
     }, [input]);
 
-    if (!mode) {
-        return (
-            <div className="min-h-screen bg-slate-50 relative pb-20 p-6">
-                {/* <HomeButton /> */}
+    // Tab switcher logic
+    const handleTabSwitch = (newMode: 'INTERVIEW' | 'WORK') => {
+        if (mode === newMode) return;
+        setMode(newMode);
+        setInput(""); // 입력 초기화
+        savedRef.current = false;
+        setShowSavedToast(false);
+    };
 
-                <div className="max-w-6xl mx-auto px-6 pt-52">
-                    {/* Header */}
-                    <div className="text-center mb-24 space-y-6">
-                        <motion.h1
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight drop-shadow-sm flex items-center justify-center gap-4"
-                        >
-                            <div className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
-                                <ArrowRightLeft className="w-10 h-10 text-white" />
-                            </div>
-                            <span><span className="text-emerald-600">PREP</span> 변환기</span>
-                        </motion.h1>
-                        <motion.p
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                            className="text-xl text-slate-600 mt-8 md:mt-10 max-w-3xl mx-auto break-keep leading-relaxed bg-white p-6 rounded-2xl border border-slate-200 shadow-xl"
-                        >
-                            <span className="text-emerald-600 font-bold">PREP 변환기</span>는 <br />당신의 파편화된 생각을 <br />논리적인 <span className="text-emerald-600 font-bold">PREP 구조</span>로 자동 재조립해줍니다.<br className="hidden sm:block" />
-                            <br />복잡한 설명이나 장황한 아이디어를 입력하면, <br />AI가 핵심(Point)을 추출하고 <br />근거(Reason)와 사례(Example)를 보강하여 <br />설득력 있는 답변으로 완성합니다.
-                        </motion.p>
-                    </div>
-
-                    {(() => {
-                        const transformInfo = store.getPracticeTierInfo('prep-transform');
-                        const IconComp = TreePine;
-
-                        return (
-                            <SkillDashboard
-                                title="PREP 변환기"
-                                subtitle="장황한 내 생각을 깔끔한 PREP 구조로 정리해 보세요!"
-                                tierName={<span><span className="text-amber-600">PREP 변환기</span> 레벨</span>}
-                                tierIndex={transformInfo.tierIndex}
-                                tierIconNode={<IconComp className="w-8 h-8 text-amber-500" />}
-                                currentScore={transformInfo.count}
-                                scoreLabel="회"
-                                remainingScore={transformInfo.remaining}
-                                progressPercent={transformInfo.progress}
-                                theme="amber"
-                                href="#modes"
-                                actionLabel="아래에서 시작"
-                            />
-                        );
-                    })()}
-
-                    <div id="modes" className="max-w-4xl mx-auto text-center mb-8 mt-12">
-                        <span className="inline-block py-1 px-3 rounded-full bg-emerald-50 text-emerald-600 text-sm font-bold mb-2 border border-emerald-100">
-                            MODE SELECT
-                        </span>
-                    </div>
-
-                    <ModeSelection
-                        onSelect={(m) => setMode(m)}
-                        title="어떤 상황을 변환하시겠습니까?"
-                        theme="emerald"
-                    />
-                </div>
+    // Tab UI Component
+    const CategoryTabs = (
+        <div className="flex justify-center items-center">
+            <div className="hidden sm:bg-slate-100 p-1.5 flex items-center gap-1 rounded-full border border-slate-200 shadow-sm max-w-fit mx-auto overflow-x-auto scroolbar-hide">
+                <button
+                    onClick={() => handleTabSwitch('INTERVIEW')}
+                    className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm sm:text-base transition-all duration-300 ${mode === 'INTERVIEW'
+                        ? 'bg-white text-amber-600 shadow-md ring-1 ring-slate-200/50 scale-100'
+                        : 'text-slate-500 hover:bg-slate-200/50 hover:text-slate-700 scale-95'
+                        }`}
+                >
+                    <GraduationCap className="w-5 h-5" />
+                    보고 / 기안
+                </button>
+                <button
+                    onClick={() => handleTabSwitch('WORK')}
+                    className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm sm:text-base transition-all duration-300 ${mode === 'WORK'
+                        ? 'bg-white text-amber-600 shadow-md ring-1 ring-slate-200/50 scale-100'
+                        : 'text-slate-500 hover:bg-slate-200/50 hover:text-slate-700 scale-95'
+                        }`}
+                >
+                    <BookOpen className="w-5 h-5" />
+                    이메일 / 메신저
+                </button>
             </div>
-        );
-    }
+        </div>
+    );
 
     return (
         <WizardLayout
@@ -165,19 +139,20 @@ export default function TransformPage() {
             description=""
             pageTitle={
                 <span className="flex items-center justify-center gap-4">
-                    <span className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
+                    <span className="bg-slate-900 rounded-full p-3 flex items-center justify-center shadow-lg">
                         <ArrowRightLeft className="w-10 h-10 text-white" />
                     </span>
-                    <span><span className="text-emerald-600">PREP</span> 변환기</span>
+                    <span className="text-slate-900">콩떡 찰떡</span>
                 </span>
             }
             pageDescription={
                 <>
-                    <span className="text-emerald-600 font-bold">PREP 변환기</span>는 <br />당신의 파편화된 생각을 <br />논리적인 <span className="text-emerald-600 font-bold">PREP 구조</span>로 자동 재조립해줍니다.<br className="hidden sm:block" />
-                    <br />복잡한 설명이나 장황한 아이디어를 입력하면, <br />AI가 핵심(Point)을 추출하고 <br />근거(Reason)와 사례(Example)를 보강하여 <br />설득력 있는 답변으로 완성합니다.
+                    <span className="text-amber-600 font-bold">PREP 자동 변환기</span>는 <br />복잡한 설명이나 장황한 아이디어를 입력하면, <br />논리적인 <span className="text-amber-600 font-bold">PREP 구조</span>로 자동 재조립해줍니다.<br className="hidden sm:block" />
+                    <br /><span className="text-amber-600 font-bold">콩떡</span>같이 말해도 <span className="text-amber-600 font-bold">찰떡</span>같이 알아듣고 <br />설득력 있는 답변으로 완성합니다.
                 </>
             }
-            theme="emerald"
+            headerAccessory={CategoryTabs}
+            theme="amber"
         >
             {/* Saved Toast */}
             {showSavedToast && (
@@ -195,7 +170,7 @@ export default function TransformPage() {
                             <Textarea
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
-                                placeholder={`💡 두서없이 떠오르는 생각을 그대로 적어보세요. AI가 PREP 구조로 정리해드립니다.\n\n[작성 예시]\n저는 솔직히 AI가 일자리를 빼앗는다고 생각해요. 물론 새로운 일자리가 생기기도 하지만... 근데 또 생각해보면 예전에 ATM이 나왔을 때도 사람들이 은행원 일자리가 없어진다고 했는데...`}
+                                placeholder={`💡 두서없이 떠오르는 생각을 그대로 적어보세요. AI가 PREP 구조로 정리해드립니다.\n\n[작성 예시]\n이번 신규 마케팅 캠페인 도입은 필수적이라고 봅니다. 타겟 고객층의 이탈률이 최근 3개월간 증가하고 있어요. 물론 예산이 들긴 하지만, 경쟁사는 이미 비슷한 캠페인으로 전환율을 30% 높였거든요. 우리도 서둘러야 합니다.`}
                                 className="min-h-[400px] text-lg resize-none p-6 leading-relaxed bg-white text-gray-900 border-gray-300 focus:ring-trust-navy"
                             />
 

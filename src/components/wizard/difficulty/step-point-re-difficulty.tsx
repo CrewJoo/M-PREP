@@ -34,7 +34,7 @@ export function StepPointReDifficulty() {
                     </span>
                 )}
 
-                <div className="rounded-xl bg-orange-50 p-6 text-orange-900 border border-orange-100 mt-4">
+                <div className="rounded-xl bg-blue-50 p-6 text-blue-900 border border-blue-100 mt-4">
                     <p className="text-lg font-bold flex items-center gap-2 mb-2">
                         💡 Tip: 고난의 교훈을 전공 적합성으로 연결하세요.
                     </p>
@@ -49,7 +49,7 @@ export function StepPointReDifficulty() {
                 <Button variant="outline" onClick={() => setStep(3)} className="w-1/3">
                     이전
                 </Button>
-                <Button type="submit" className="w-2/3 bg-orange-600 text-white hover:bg-orange-700 py-4 text-lg font-bold rounded-xl shadow-lg shadow-orange-200">
+                <Button type="submit" className="w-2/3 bg-blue-600 text-white hover:bg-blue-700 py-4 text-lg font-bold rounded-xl shadow-lg shadow-blue-200">
                     AI 분석 받기
                 </Button>
             </div>

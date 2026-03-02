@@ -34,7 +34,7 @@ export function StepReasonDream() {
                     </span>
                 )}
 
-                <div className="rounded-xl bg-purple-50 p-6 text-purple-900 border border-purple-100 mt-4">
+                <div className="rounded-xl bg-blue-50 p-6 text-blue-900 border border-blue-100 mt-4">
                     <p className="text-lg font-bold flex items-center gap-2 mb-2">
                         💡 Tip: 진정성이 설득력입니다.
                     </p>

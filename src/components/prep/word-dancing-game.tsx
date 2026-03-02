@@ -225,14 +225,8 @@ export function WordDancingGame({ level }: WordDancingGameProps) {
             {/* Header / Progress */}
             <div className="flex justify-between items-end border-b pb-4">
                 <div>
-                    <h2 className="text-3xl sm:text-4xl font-black text-slate-800">
-                        <span className={cn(
-                            "mr-3",
-                            level === 1 && "text-purple-300",
-                            level === 2 && "text-purple-500",
-                            level === 3 && "text-purple-700",
-                            level === 4 && "text-purple-900"
-                        )}>
+                    <h2 className="text-4xl sm:text-5xl font-black text-slate-900">
+                        <span className="mr-3">
                             {levelData.title.split(':')[0]}
                         </span>
                         <span>{levelData.title.substring(levelData.title.indexOf(':') + 1)}</span>

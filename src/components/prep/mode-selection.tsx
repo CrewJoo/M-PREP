@@ -5,10 +5,11 @@ interface ModeSelectionProps {
     onSelect: (mode: 'INTERVIEW' | 'WORK') => void;
     title?: string;
     subtitle?: string;
-    theme?: 'emerald' | 'indigo';
+    theme?: 'emerald' | 'indigo' | 'blue' | 'amber';
+    layout?: 'cards' | 'training';
 }
 
-export function ModeSelection({ onSelect, title, subtitle, theme = 'emerald' }: ModeSelectionProps) {
+export function ModeSelection({ onSelect, title, subtitle, theme = 'emerald', layout = 'cards' }: ModeSelectionProps) {
     const colors = {
         emerald: {
             title: "text-trust-navy",
@@ -27,6 +28,24 @@ export function ModeSelection({ onSelect, title, subtitle, theme = 'emerald' }: 
             iconBg2: "bg-violet-50 group-hover:bg-violet-100",
             iconBorder2: "border-violet-100 group-hover:border-violet-200",
             iconColor2: "text-violet-600",
+        },
+        blue: {
+            title: "text-slate-900",
+            iconBg: "bg-blue-50 group-hover:bg-blue-100",
+            iconBorder: "border-blue-100 group-hover:border-blue-200",
+            iconColor: "text-blue-600",
+            iconBg2: "bg-sky-50 group-hover:bg-sky-100",
+            iconBorder2: "border-sky-100 group-hover:border-sky-200",
+            iconColor2: "text-sky-600",
+        },
+        amber: {
+            title: "text-amber-900",
+            iconBg: "bg-amber-50 group-hover:bg-amber-100",
+            iconBorder: "border-amber-100 group-hover:border-amber-200",
+            iconColor: "text-amber-600",
+            iconBg2: "bg-orange-50 group-hover:bg-orange-100",
+            iconBorder2: "border-orange-100 group-hover:border-orange-200",
+            iconColor2: "text-orange-600",
         }
     };
 
@@ -42,39 +61,43 @@ export function ModeSelection({ onSelect, title, subtitle, theme = 'emerald' }: 
                     {subtitle}
                 </p>
             )}
-            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-8 ${!subtitle ? "mt-12" : ""}`}>
+            <div className={`grid ${layout === 'training' ? 'grid-cols-1 gap-4 max-w-2xl mx-auto' : 'grid-cols-1 sm:grid-cols-2 gap-8'} ${!subtitle ? "mt-12" : ""}`}>
                 {/* Interview Mode */}
                 <motion.button
-                    whileHover={{ scale: 1.03 }}
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => onSelect('INTERVIEW')}
-                    className="flex flex-col items-center p-12 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all group duration-300 border border-slate-200 relative overflow-hidden"
+                    className={`flex ${layout === 'training' ? 'flex-row items-center p-6 text-left' : 'flex-col items-center p-12 text-center'} bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all group duration-300 border border-slate-200 relative overflow-hidden`}
                 >
-                    <div className={`w-24 h-24 rounded-full flex items-center justify-center mb-8 border transition-colors shadow-sm ${c.iconBg} ${c.iconBorder}`}>
-                        <GraduationCap className={`w-12 h-12 transition-colors ${c.iconColor}`} />
+                    <div className={`${layout === 'training' ? 'w-16 h-16 mr-6' : 'w-24 h-24 mb-8'} rounded-full flex items-center justify-center flex-shrink-0 border transition-colors shadow-sm ${c.iconBg} ${c.iconBorder}`}>
+                        <GraduationCap className={`${layout === 'training' ? 'w-8 h-8' : 'w-12 h-12'} transition-colors ${c.iconColor}`} />
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-800 mb-4">대입 면접 / 수시</h3>
-                    <p className="text-slate-500 text-center leading-relaxed group-hover:text-slate-700 transition-colors">
-                        대입 면접, 모의 면접 등<br />
-                        자신의 학업 역량을 어필해야 하는 순간
-                    </p>
+                    <div>
+                        <h3 className={`${layout === 'training' ? 'text-xl' : 'text-2xl'} font-bold text-slate-800 mb-2`}>비즈니스 보고 / 기안</h3>
+                        <p className={`text-slate-500 leading-relaxed group-hover:text-slate-700 transition-colors ${layout === 'training' ? 'text-sm' : ''}`}>
+                            핵심 전략 보고, 투자 제안 등<br className={layout === 'training' ? 'hidden sm:block' : ''} />
+                            자신의 기획과 논리를 설득해야 하는 순간
+                        </p>
+                    </div>
                 </motion.button>
 
                 {/* Work Mode */}
                 <motion.button
-                    whileHover={{ scale: 1.03 }}
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => onSelect('WORK')}
-                    className="flex flex-col items-center p-12 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all group duration-300 border border-slate-200 relative overflow-hidden"
+                    className={`flex ${layout === 'training' ? 'flex-row items-center p-6 text-left' : 'flex-col items-center p-12 text-center'} bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all group duration-300 border border-slate-200 relative overflow-hidden`}
                 >
-                    <div className={`w-24 h-24 rounded-full flex items-center justify-center mb-8 border transition-colors shadow-sm ${c.iconBg2} ${c.iconBorder2}`}>
-                        <BookOpen className={`w-12 h-12 transition-colors ${c.iconColor2}`} />
+                    <div className={`${layout === 'training' ? 'w-16 h-16 mr-6' : 'w-24 h-24 mb-8'} rounded-full flex items-center justify-center flex-shrink-0 border transition-colors shadow-sm ${c.iconBg2} ${c.iconBorder2}`}>
+                        <BookOpen className={`${layout === 'training' ? 'w-8 h-8' : 'w-12 h-12'} transition-colors ${c.iconColor2}`} />
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-800 mb-4">생기부 / 자소서</h3>
-                    <p className="text-slate-500 text-center leading-relaxed group-hover:text-slate-700 transition-colors">
-                        학교생활기록부, 대입 자소서 등<br />
-                        논리적인 교내 활동 기록이 필요할 때
-                    </p>
+                    <div>
+                        <h3 className={`${layout === 'training' ? 'text-xl' : 'text-2xl'} font-bold text-slate-800 mb-2`}>이메일 / 메신저</h3>
+                        <p className={`text-slate-500 leading-relaxed group-hover:text-slate-700 transition-colors ${layout === 'training' ? 'text-sm' : ''}`}>
+                            업무 요청, 결과 공유 등<br className={layout === 'training' ? 'hidden sm:block' : ''} />
+                            명확하고 간결한 커뮤니케이션이 필요할 때
+                        </p>
+                    </div>
                 </motion.button>
             </div>
         </div>
