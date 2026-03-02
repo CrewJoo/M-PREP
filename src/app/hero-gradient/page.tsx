@@ -25,7 +25,7 @@ export default function HeroGradientSamplePage() {
 
             <section className="relative w-full h-[80vh] overflow-hidden bg-slate-50 flex items-center justify-center">
                 {/* Animated Gradient Background */}
-                <AnimatedGradientBackground className="pointer-events-none" />
+                <AnimatedGradientBackground containerClassName="pointer-events-none" />
 
                 {/* Overlay content */}
                 <div className="relative z-10 flex flex-col items-center text-center p-4 w-full">
