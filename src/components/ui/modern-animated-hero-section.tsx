@@ -59,14 +59,18 @@ export class TextScramble {
         let complete = 0
 
         for (let i = 0, n = this.queue.length; i < n; i++) {
-            let { from, to, start, end, char } = this.queue[i]
+            const item = this.queue[i]
+            if (!item) continue;
+            const { from, to, start, end } = item
+            let char = item.char
+
             if (this.frame >= end) {
                 complete++
                 output += to
             } else if (this.frame >= start) {
                 if (!char || Math.random() < 0.28) {
                     char = this.chars[Math.floor(Math.random() * this.chars.length)]
-                    this.queue[i].char = char
+                    item.char = char // TS ERROR FIXED
                 }
                 output += `<span class="text-slate-400 opacity-70">${char}</span>`
             } else {
@@ -103,7 +107,8 @@ export const ScrambledText: React.FC<{ phrases: string[], className?: string }> 
 
             const next = () => {
                 if (isUnmounted || !scramblerRef.current) return;
-                scramblerRef.current.setText(phrases[counter]).then(() => {
+                const nextPhrase = phrases[counter] || "";
+                scramblerRef.current.setText(nextPhrase).then(() => {
                     if (!isUnmounted) {
                         setTimeout(next, 3000)
                     }
@@ -122,7 +127,7 @@ export const ScrambledText: React.FC<{ phrases: string[], className?: string }> 
             className={className}
             style={{ fontFamily: 'monospace' }}
         >
-            {phrases[0]}
+            {phrases[0] || ""}
         </span>
     )
 }
@@ -139,7 +144,7 @@ export const RainingLettersBg: React.FC<{ children: React.ReactNode, className?:
 
         for (let i = 0; i < charCount; i++) {
             newCharacters.push({
-                char: allChars[Math.floor(Math.random() * allChars.length)],
+                char: allChars[Math.floor(Math.random() * allChars.length)] || "A",
                 x: Math.random() * 100,
                 y: Math.random() * 100,
                 speed: 0.05 + Math.random() * 0.15,
